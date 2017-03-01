@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="Keywords" content="HLBFGS, LBFGS, Preconditioned LBFGS, Preconditioned conjugate gradient, nonlinear optimization, large-scale optimization, quasi-Newton method" />
+    <meta name="Description" content="HLBFGS: A hybrid L-BFGS optimization framework" />
+    <title>
+      HLBFGS: A hybrid L-BFGS routine
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
+	<link rel="shortcut icon" href="../../images/surf.ico" />
+
+  </head>
+
+  <body link="#0064FF" vlink="#236B8E" alink="#32CC99">
+  <center>
+  <table width="1024">
+  <tr><td>
+
+   <center>
+
+	<h1> <img src="logo.gif" border="0" alt="logo">  </h1>
+  </center>
+  	<h2> Introduction </h2>
+    <p align="justify">
+	HLBFGS is a hybrid <a href="http://en.wikipedia.org/wiki/L-BFGS" target="_blank">L-BFGS</a>(Limited Memory <a href="http://www.caam.rice.edu/~dennis/images/Broyden-Fletcher-Goldfarb-Shanno.jpg" target="_blank">Broyden–Fletcher–Goldfarb–Shanno</a> Method) optimization framework which unifies L-BFGS method<sup><span>[</span>1<span>]</span></sup>, Preconditioned L-BFGS method<sup><span>[</span>2<span>]</span></sup> and Preconditioned Conjugate Gradient method<sup><span>[</span>3,9<span>]</span></sup>. With different options, HLBFGS also works like gradient-decent method, Newton method and Conjugate-gradient method.  The original purpose I wrote this routine is for fast-computing large-scaled Centroidal Voronoi diagram<sup><span>[</span>4<span>]</span></sup>.
+	</p>
+
+	HLBFGS is used to minimize a multivariable function F(X) without constraints. The users only need to provide the initial guess of X and the routines which compute the function value F(X<sub>0</sub>)  and its gradient dF(X<sub>0</sub>) . HLBFGS can speedup the optimization process if the users provide the true Hessian of F(X). For technical details and optimization theories behind HLBFGS, please consult the references listed at the end of this page.
+	<hr noshade="noshade" />
+
+	<h2> Availability </h2>
+	<p align="justify">
+	HLBFGS is freely available for non-commercial purposes.  The third-party software <a href="http://www.mcs.anl.gov/~more/icfs/" target="_blank">ICFS</a><sup><span>[</span>5<span>]</span></sup> is integrated into HLBFGS to modify the true Hessian if the Hessian is available. The line-search routine<sup><span>[</span>6<span>]</span></sup> is from the original <a href="http://www.ece.northwestern.edu/~nocedal/lbfgs.html" target="_blank">L-BFGS</a><sup><span>[</span>1<span>]</span></sup> code and <a href="http://www.netlib.org/toms/702" target="_blank">TNPACK</a><sup><span>[</span>7<span>]</span></sup>.
+	</p>
+	
+	<p align="justify">
+	You can download HLBFGS C++ package from <a href = "HLBFGS.zip">here</a>.
+	The package includes HLBFGS routine, a sparse matrix class, line-search routine and ICFS library.
+	</p>
+	<hr noshade="noshade" />
+
+	<h2> History </h2>
+	<ul>
+		<li> March 9, 2010:  released HLBFGS 1.2 to public. Changes: OPENMP support and other minor adjustments.</li>
+		<li> July 13, 2009:  released HLBFGS 1.0 to public. </li>
+	</ul>
+	<hr noshade="noshade" />
+
+	<h2> Usages </h2>
+	<ol>
+		<li> add all the files of HLBFGS into your C++ project; </li>
+		<li> include "HLBFGS.h" into your source; </li>
+		<li> include "Lite_Sparse_Matrix.h" into your source if you would like to provide the hessian of F(X); </li>
+		<li> initialize HLBFGS routine by calling <br/>
+		<b> INIT_HLBFGS(PARAMETER, INFO)</b>; <br/>
+		here <b>PARAMETER</b> is a double array (dimension >= 20) and <b>INFO</b> is an integer array (dimension >= 20).
+		<b>INIT_HLBFGS</b> function sets the default values for <b>PARAMETER</b> and <b>INFO</b>; </li>
+		<li> customize the values of <b>PARAMETER</b> and <b>INFO</b>, see Section <em>HLBFGS Setting</em>; </li>
+		<li> optimize F(X) by calling <br/>
+		 <b>HLBFGS(N, M, INIT_X, EVALFUNC, EVALFUNC_H, HLBFGS_UPDATE_HESSIAN, NEWITERATION, PARAMETER, INFO)</b>; <br/>
+		here <b>N</b> is the number of variables, <b>M</b> is the number of LBFGS updates (typical choices: 3-20), <b>INIT_X</b> is the intial guess of variables.
+		The users need to implement the functions: <br/>
+		 <b>void EVALFUNC(int N, double* X, double *PREV_X, double* F, double* G)</b>, <br/>
+		 <b>void NEWITERATION(int ITER, int CALL_ITER, double *X, double* F, double *G, double* GNORM)</b>. <br/>
+		 <b>EVALFUNC</b> is used to evaluate the function value F(X) and its gradient G(X). <b>PREV_X</b> stores the variables from the last iteration. <br/>
+		 <b>NEWITERATION</b> is used to collect internal information after each iteration, <b>ITER</b> stores the current number of iterations,  <b>CALL_ITER</b> stores the number of  <b>EVALFUNC</b> calls from the beginning, <b>GNORM</b> stores the Euclidean norm of the gradient.  If the users utilize the Hessian of F(X), the function <br/>
+		 <b>void EVALFUNC_H(int N, double *X, double *PREV_X, double *F, double *G, HESSIAN_MATRIX&amp; HESSIAN)</b> <br/> should be implemented. The users need to use Lite_Sparse_Matrix class to store the lower part of the Hessian. Please see the sample code for details. </li>
+	</ol>
+    A sample code is available (<a href="HLBFGS_demo.html">html verion</a>, <a href="demo.cpp">cpp version</a>). <br/>
+	<hr noshade="noshade" />
+
+	<h2> HLBFGS Setting </h2>
+	The values of PARAMETER and INFO define the behaviors of HLBGFS.
+	<table cellspacing="2" cellpadding="1" border="1" align="center">
+	<tr>
+		<th align="center">Entry</th>
+		<th align="center">Default value</th>
+		<th align="center">Meaning</th>
+	</tr>
+	<tr>
+		<td>PARAMETER[0]</td>
+		<td>1.0e-4</td>
+		<td>function tolerance used in line-search </td>
+	</tr>
+	<tr>
+		<td>PARAMETER[1]</td>
+		<td>1.0e-16</td>
+		<td>variable tolerance used in line-search</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[2]</td>
+		<td>0.9</td>
+		<td>gradient tolerance used in line-search</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[3]</td>
+		<td>1.0e-20</td>
+		<td>stpmin used in line-search</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[4]</td>
+		<td>1.0e+20</td>
+		<td>stpmax used in line-search</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[5]</td>
+		<td>1.0e-9</td>
+		<td>the stop criterion ( ||G||/max(1,||X||) &lt;  PARAMETER[5] )</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[6]</td>
+		<td>1.0e-10</td>
+		<td>the stop criterion ( ||G|| &lt; PARAMETER[6] )</td>
+	</tr>
+	<tr>
+		<td>PARAMETER[7..19]</td>
+		<td></td>
+		<td>Reserved</td>
+	</tr>
+	<tr>
+		<td>INFO[0]</td>
+		<td>20</td>
+		<td>the max number of evaluation in line-search</td>
+	</tr>
+	<tr>
+		<td>INFO[1]</td>
+		<td>0</td>
+		<td>the total number of evalfunc calls</td>
+	</tr>
+	<tr>
+		<td>INFO[2]</td>
+		<td>0</td>
+		<td>the current number of iterations</td>
+	</tr>
+	<tr>
+		<td>INFO[3]</td>
+		<td>0</td>
+		<td>The lbfgs strategy.  0: standard, 1: M1QN3 strategy<sup><span>[</span>8<span>]</span></sup>(recommended).</td>
+	</tr>
+	<tr>
+		<td>INFO[4]</td>
+		<td>100000</td>
+		<td>the max number of iterations</td>
+	</tr>
+	<tr>
+		<td>INFO[5]</td>
+		<td>1</td>
+		<td>1: print message, 0: do nothing</td>
+	</tr>
+	<tr>
+		<td>INFO[6]</td>
+		<td>10</td>
+		<td>T: the update interval of Hessian. (typical choices: 0-200)</td>
+	</tr>
+	<tr>
+		<td>INFO[7]</td>
+		<td>0</td>
+		<td>0: without hessian, 1: with accurate hessian</td>
+	</tr>
+	<tr>
+		<td>INFO[8]</td>
+		<td>15</td>
+		<td>icfs parameter</td>
+	</tr>
+	<tr>
+		<td>INFO[9]</td>
+		<td>0</td>
+		<td>0: classical line-search; 1: modified line-search (it is not useful in practice)</td>
+	</tr>
+	<tr>
+		<td>INFO[10]</td>
+		<td>0</td>
+		<td>0: Disable preconditioned CG; 1: Enable preconditioned CG</td>
+	</tr>
+	<tr>
+		<td>INFO[11]</td>
+		<td>1</td>
+		<td>0 or 1 defines different methods for choosing beta in CG.</td>
+	</tr>
+	<tr>
+		<td>INFO[12]</td>
+		<td>1</td>
+		<td>internal usage. 0: only update the diag in USER_DEFINED_HLBFGS_UPDATE_H; 1: default. </td>
+	</tr>
+	<tr>
+		<td>INFO[13..19]</td>
+		<td></td>
+		<td>Reserved</td>
+	</tr>
+	</table>
+
+	<p align="justify">
+	In general the users only need to specify the values of INFO[3,4,5,6,7,10].  For different optimization methods,
+	please check the following table.
+	</p>
+
+	<table cellspacing="2" cellpadding="1" border="1" align="center">
+	<tr>
+		<th align="center">Method</th>
+		<th align="center">Setting</th>
+	</tr>
+	<tr>
+		<td>Gradient Decent</td>
+		<td>M=0, INFO[7]=0, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>Conjugate Gradient</td>
+		<td>M=0, INFO[7]=0, INFO[10]=1</td>
+	</tr>
+	<tr>
+		<td>Newton's method</td>
+		<td>M=0, INFO[6]=0, INFO[7]=1, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>L-BFGS</td>
+		<td>M>=1, INFO[3]=0, INFO[7]=0, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>M1QN3</td>
+		<td>M>=1, INFO[3]=1, INFO[7]=0, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>Preconditioned L-BFGS</td>
+		<td>M>=1, INFO[3]=0, INFO[6]=T>=0, INFO[7]=1, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>Preconditioned M1QN3</td>
+		<td>M>=1, INFO[3]=1, INFO[6]=T>=0, INFO[7]=1, INFO[10]=0</td>
+	</tr>
+	<tr>
+		<td>Preconditioned Conjugate Gradient without Hessian</td>
+		<td>M>=1, INFO[3]=0 or 1, INFO[7]=0, INFO[10]=1</td>
+	</tr>
+	<tr>
+		<td>Preconditioned Conjugate Gradient with Hessian</td>
+		<td>M>=1, INFO[3]=0 or 1, INFO[6]=T>=0, INFO[7]=1, INFO[10]=1</td>
+	</tr>
+	<tr>
+		<td>Other variants...</td>
+		<td>...</td>
+	</tr>
+	</table>
+	<hr noshade="noshade" />
+
+	<h2> To do </h2>
+	<ul>
+		<li> Make C++ interface and code friendly;
+		<li> Understand and intergrate nonsmooth L-BFGS.
+	</ul>
+	<hr noshade="noshade" />
+
+    <h2> Feedback </h2>
+	If you find any bugs or have any suggestion, please send email to <a href="http://www.loria.fr/~liuyang/">me</a> (yangliu@microsoft.com).
+	<hr noshade="noshade" />
+
+	<h2> References </h2>
+	<ol>
+		<li> D. C. Liu and J. Nocedal, <a class="main_link" href="http://www.ece.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf" target="_blank">On the Limited Memory Method for Large Scale Optimization</a>, Mathematical Programming B, 45, 3, pp. 503-528, 1999. </li>
+		<li> L. Jiang,  R. H. Byrd,  E. Eskow and R. B. Schnabel, <a class="main_link" href="http://www.cs.colorado.edu/~richard/PLBFGS.ps" target="_blank">A Preconditioned L-BFGS Algorithm with Application to Molecular Energy Minimization</a>, Technical Report CU-CS-982-04, Department of Computer Science, 2004. </li>
+		<li> R. Pytlak, <a class="main_link" href="http://www.springer.com/math/book/978-3-540-85633-7" target="_blank">Conjugate Gradient Algorithms in Nonconvex Optimization</a>, Springer, 2008. </li>
+		<li> Y. Liu, W. Wang, B. Lévy, F. Sun, D-M Yan, L. Lu and Chenglei Yang: <a class="main_link"   href="http://www.loria.fr/~liuyang/publication/On%20Centroidal%20Voronoi%20Tessellation%20---%20Energy%20Smoothness%20and%20Fast%20Computation.pdf" target="_blank">On Centroidal Voronoi Tessellation &#x2015; Energy Smoothness and Fast Computation</a>, ACM Transactions on Graphics, 28(4), 1-17. </li>
+		<li> C-J Lin and J. J. Moré, <a class="main_link" href="http://dx.doi.org/10.1137/S1064827597327334" target="_blank">Incomplete Cholesky Factorizations with Limited Memory</a>, SIAM Journal on Scientific Computing, 21, 1, pp. 1064-8275, 1999. </li>
+		<li>J. J. Moré and D. J. Thuente, <a class="main_link" href="http://portal.acm.org/citation.cfm?doid=192115.192132" target="_blank">Line search algorithms with guaranteed sufficient decrease</a>, ACM Trans. Math. Softw. 20, 3, pp. 286-307, 1994. </li>
+		<li>D. Xie and T. Schlick, <a class="main_link" href="http://portal.acm.org/citation.cfm?doid=305658.305698"  target="_blank">Remark on the Updated Truncated Newton Minimization Package, Algorithm 702</a>, ACM Trans. Math. Softw.,  25, 1, pp. 108-122, 1999. </li>
+		<li>J. Ch. Gilbert and C. Lemaréchal, <a class="main_link" href="http://www-rocq.inria.fr/~gilbert/preprint/04+lbfgs.pdf"  target="_blank">Some numerical experiments with variable-storage quasi-Newton algorithms</a>. Mathematical Programming 45, pp. 407-435, 1989.  </li>
+		<li>R. Pytlak and T. Tarnawski, <a class="main_link" href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4608810&isnumber=30837"  target="_blank">Preconditioned conjugate gradient algorithms for nonconvex problems</a>, Decision and Control, 2004. CDC. 43rd IEEE Conference on , vol.3,  pp. 3191-3196, 2004. </li>
+	</ol>
+	<hr noshade="noshade" />
+	<h2> Misc. </h2>
+    <ol>
+	    <li> There are some good L-BFGS libraries I used before:  L-BFGS (<a href="http://www.ece.northwestern.edu/~nocedal/lbfgs.html" target="_blank">Fortran</a>, <a href="http://www.alglib.net/optimization/lbfgs.php" target="_blank">C++</a>), L-BFGS-B (<a href="http://www.ece.northwestern.edu/~nocedal/lbfgsb.html" target="_blank">Fortran</a>, <a href="http://www.alglib.net/optimization/lbfgsb.php" target="_blank">C++</a>), M1QN3 (<a href="http://www-rocq.inria.fr/~gilbert/modulopt/optimization-routines/m1qn3/m1qn3.html" target="_blank">Fortran</a>). </li>
+		<li> I am also interested in nonsmooth L-BFGS: <a href="http://napsu.karmitsa.fi/lmbm/" target="_blank">LMBM</a> (Limited Memory Bundle Method), <a href ="http://www.cs.cas.cz/luksan/subroutines.html" target="_blank">Prof. Ladislav Luksan's code</a>. </li>
+	</ol>
+	<hr noshade="noshade" />
+     Updated on March 9, 2010
+    </td></tr>
+	</table>
+	</center>
+	<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=7716070; 
+var sc_invisible=1; 
+var sc_security="d3264c26"; 
+</script>
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript><div class="statcounter"><a title="drupal
+statistics" href="http://statcounter.com/drupal/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/7716070/0/d3264c26/1/"
+alt="drupal statistics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+  </body>
+
+</html> 
