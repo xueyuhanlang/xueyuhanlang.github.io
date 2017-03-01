@@ -24,7 +24,7 @@
   </center>
   	<h2> Introduction </h2>
     <p align="justify">
-	HLBFGS is a hybrid <a href="http://en.wikipedia.org/wiki/L-BFGS" target="_blank">L-BFGS</a>(Limited Memory <a href="http://www.caam.rice.edu/~dennis/images/Broyden-Fletcher-Goldfarb-Shanno.jpg" target="_blank">Broyden–Fletcher–Goldfarb–Shanno</a> Method) optimization framework which unifies L-BFGS method<sup><span>[</span>1<span>]</span></sup>, Preconditioned L-BFGS method<sup><span>[</span>2<span>]</span></sup> and Preconditioned Conjugate Gradient method<sup><span>[</span>3,9<span>]</span></sup>. With different options, HLBFGS also works like gradient-decent method, Newton method and Conjugate-gradient method.  The original purpose I wrote this routine is for fast-computing large-scaled Centroidal Voronoi diagram<sup><span>[</span>4<span>]</span></sup>.
+	HLBFGS is a hybrid <a href="http://en.wikipedia.org/wiki/L-BFGS" target="_blank">L-BFGS</a>(Limited Memory <a href="http://www.caam.rice.edu/~dennis/images/Broyden-Fletcher-Goldfarb-Shanno.jpg" target="_blank">Broydenï¿½Fletcherï¿½Goldfarbï¿½Shanno</a> Method) optimization framework which unifies L-BFGS method<sup><span>[</span>1<span>]</span></sup>, Preconditioned L-BFGS method<sup><span>[</span>2<span>]</span></sup> and Preconditioned Conjugate Gradient method<sup><span>[</span>3,9<span>]</span></sup>. With different options, HLBFGS also works like gradient-decent method, Newton method and Conjugate-gradient method.  The original purpose I wrote this routine is for fast-computing large-scaled Centroidal Voronoi diagram<sup><span>[</span>4<span>]</span></sup>.
 	</p>
 
 	HLBFGS is used to minimize a multivariable function F(X) without constraints. The users only need to provide the initial guess of X and the routines which compute the function value F(X<sub>0</sub>)  and its gradient dF(X<sub>0</sub>) . HLBFGS can speedup the optimization process if the users provide the true Hessian of F(X). For technical details and optimization theories behind HLBFGS, please consult the references listed at the end of this page.
@@ -34,9 +34,9 @@
 	<p align="justify">
 	HLBFGS is freely available for non-commercial purposes.  The third-party software <a href="http://www.mcs.anl.gov/~more/icfs/" target="_blank">ICFS</a><sup><span>[</span>5<span>]</span></sup> is integrated into HLBFGS to modify the true Hessian if the Hessian is available. The line-search routine<sup><span>[</span>6<span>]</span></sup> is from the original <a href="http://www.ece.northwestern.edu/~nocedal/lbfgs.html" target="_blank">L-BFGS</a><sup><span>[</span>1<span>]</span></sup> code and <a href="http://www.netlib.org/toms/702" target="_blank">TNPACK</a><sup><span>[</span>7<span>]</span></sup>.
 	</p>
-	
+
 	<p align="justify">
-	You can download HLBFGS C++ package from <a href = "HLBFGS.zip">here</a>.
+	You can download HLBFGS C++ package from <a href = "https://app.box.com/s/kz386nvgq3c2zq17jv368o3yi5wrpc3h">here</a>.
 	The package includes HLBFGS routine, a sparse matrix class, line-search routine and ICFS library.
 	</p>
 	<hr noshade="noshade" />
@@ -252,7 +252,7 @@
 	<hr noshade="noshade" />
 
     <h2> Feedback </h2>
-	If you find any bugs or have any suggestion, please send email to <a href="http://www.loria.fr/~liuyang/">me</a> (yangliu@microsoft.com).
+	If you find any bugs or have any suggestion, please send email to me (yangliu@microsoft.com).
 	<hr noshade="noshade" />
 
 	<h2> References </h2>
@@ -260,11 +260,11 @@
 		<li> D. C. Liu and J. Nocedal, <a class="main_link" href="http://www.ece.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf" target="_blank">On the Limited Memory Method for Large Scale Optimization</a>, Mathematical Programming B, 45, 3, pp. 503-528, 1999. </li>
 		<li> L. Jiang,  R. H. Byrd,  E. Eskow and R. B. Schnabel, <a class="main_link" href="http://www.cs.colorado.edu/~richard/PLBFGS.ps" target="_blank">A Preconditioned L-BFGS Algorithm with Application to Molecular Energy Minimization</a>, Technical Report CU-CS-982-04, Department of Computer Science, 2004. </li>
 		<li> R. Pytlak, <a class="main_link" href="http://www.springer.com/math/book/978-3-540-85633-7" target="_blank">Conjugate Gradient Algorithms in Nonconvex Optimization</a>, Springer, 2008. </li>
-		<li> Y. Liu, W. Wang, B. Lévy, F. Sun, D-M Yan, L. Lu and Chenglei Yang: <a class="main_link"   href="http://www.loria.fr/~liuyang/publication/On%20Centroidal%20Voronoi%20Tessellation%20---%20Energy%20Smoothness%20and%20Fast%20Computation.pdf" target="_blank">On Centroidal Voronoi Tessellation &#x2015; Energy Smoothness and Fast Computation</a>, ACM Transactions on Graphics, 28(4), 1-17. </li>
-		<li> C-J Lin and J. J. Moré, <a class="main_link" href="http://dx.doi.org/10.1137/S1064827597327334" target="_blank">Incomplete Cholesky Factorizations with Limited Memory</a>, SIAM Journal on Scientific Computing, 21, 1, pp. 1064-8275, 1999. </li>
-		<li>J. J. Moré and D. J. Thuente, <a class="main_link" href="http://portal.acm.org/citation.cfm?doid=192115.192132" target="_blank">Line search algorithms with guaranteed sufficient decrease</a>, ACM Trans. Math. Softw. 20, 3, pp. 286-307, 1994. </li>
+		<li> Y. Liu, W. Wang, B. Lï¿½vy, F. Sun, D-M Yan, L. Lu and Chenglei Yang: <a class="main_link"   href="http://www.loria.fr/~liuyang/publication/On%20Centroidal%20Voronoi%20Tessellation%20---%20Energy%20Smoothness%20and%20Fast%20Computation.pdf" target="_blank">On Centroidal Voronoi Tessellation &#x2015; Energy Smoothness and Fast Computation</a>, ACM Transactions on Graphics, 28(4), 1-17. </li>
+		<li> C-J Lin and J. J. Morï¿½, <a class="main_link" href="http://dx.doi.org/10.1137/S1064827597327334" target="_blank">Incomplete Cholesky Factorizations with Limited Memory</a>, SIAM Journal on Scientific Computing, 21, 1, pp. 1064-8275, 1999. </li>
+		<li>J. J. Morï¿½ and D. J. Thuente, <a class="main_link" href="http://portal.acm.org/citation.cfm?doid=192115.192132" target="_blank">Line search algorithms with guaranteed sufficient decrease</a>, ACM Trans. Math. Softw. 20, 3, pp. 286-307, 1994. </li>
 		<li>D. Xie and T. Schlick, <a class="main_link" href="http://portal.acm.org/citation.cfm?doid=305658.305698"  target="_blank">Remark on the Updated Truncated Newton Minimization Package, Algorithm 702</a>, ACM Trans. Math. Softw.,  25, 1, pp. 108-122, 1999. </li>
-		<li>J. Ch. Gilbert and C. Lemaréchal, <a class="main_link" href="http://www-rocq.inria.fr/~gilbert/preprint/04+lbfgs.pdf"  target="_blank">Some numerical experiments with variable-storage quasi-Newton algorithms</a>. Mathematical Programming 45, pp. 407-435, 1989.  </li>
+		<li>J. Ch. Gilbert and C. Lemarï¿½chal, <a class="main_link" href="http://www-rocq.inria.fr/~gilbert/preprint/04+lbfgs.pdf"  target="_blank">Some numerical experiments with variable-storage quasi-Newton algorithms</a>. Mathematical Programming 45, pp. 407-435, 1989.  </li>
 		<li>R. Pytlak and T. Tarnawski, <a class="main_link" href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4608810&isnumber=30837"  target="_blank">Preconditioned conjugate gradient algorithms for nonconvex problems</a>, Decision and Control, 2004. CDC. 43rd IEEE Conference on , vol.3,  pp. 3191-3196, 2004. </li>
 	</ol>
 	<hr noshade="noshade" />
@@ -280,9 +280,9 @@
 	</center>
 	<!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=7716070; 
-var sc_invisible=1; 
-var sc_security="d3264c26"; 
+var sc_project=7716070;
+var sc_invisible=1;
+var sc_security="d3264c26";
 </script>
 <script type="text/javascript"
 src="http://www.statcounter.com/counter/counter.js"></script>
@@ -294,4 +294,4 @@ alt="drupal statistics"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
   </body>
 
-</html> 
+</html>
