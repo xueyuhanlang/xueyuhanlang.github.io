@@ -1,4 +1,4 @@
-/* Modern Academic Homepage CSS */
+/* Modern Professional Homepage CSS */
 
 /* CSS Reset */
 *, *::before, *::after {
@@ -9,23 +9,25 @@
 
 /* Root Variables */
 :root {
-  /* Colors */
-  --primary-color: #1e3a8a;
-  --secondary-color: #3b82f6;
-  --accent-color: #059669;
-  --text-primary: #1f2937;
+  /* Colors - Elegant Academic Palette */
+  --primary-color: #2d3e50;
+  --secondary-color: #5a7a8a;
+  --accent-color: #5b8a8a;
+  --text-primary: #2d3e50;
   --text-secondary: #6b7280;
-  --link-color: #2563eb;
-  --link-hover: #dc2626;
+  --text-muted: #8b95a5;
+  --link-color: #4a6fa5;
+  --link-hover: #2d4563;
   --background: #ffffff;
-  --surface: #f8fafc;
-  --border: #e5e7eb;
-  --shadow: rgba(0, 0, 0, 0.1);
-  
+  --surface: #fafbfc;
+  --border: #e0e5eb;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.08);
+
   /* Typography */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-secondary: 'Georgia', 'Times New Roman', serif;
-  
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -33,7 +35,7 @@
   --space-lg: 2rem;
   --space-xl: 3rem;
   --space-2xl: 4rem;
-  
+
   /* Breakpoints */
   --bp-sm: 640px;
   --bp-md: 768px;
@@ -49,17 +51,18 @@ html {
 
 body {
   font-family: var(--font-primary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.975rem;
+  line-height: 1.7;
   color: var(--text-primary);
   background-color: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 /* Container */
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--space-sm);
   width: 100%;
@@ -73,60 +76,73 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: 600;
+  line-height: 1.25;
   margin-bottom: var(--space-sm);
   color: var(--text-primary);
+  font-family: var(--font-serif);
 }
 
 h1 {
   font-size: 2.5rem;
   color: var(--primary-color);
   margin-bottom: var(--space-xs);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-style: italic;
 }
 
 h2 {
   font-size: 2rem;
   color: var(--primary-color);
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 h3 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
+  font-size: 1.25rem;
+  color: var(--primary-color);
   margin-bottom: var(--space-md);
-  padding-bottom: var(--space-xs);
-  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 h4 {
-  font-size: 1.25rem;
-  color: var(--secondary-color);
+  font-size: 1.1rem;
+  color: var(--primary-color);
   margin-bottom: var(--space-sm);
+  font-weight: 600;
 }
 
 .chinese-name {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
   font-weight: 400;
+  font-family: var(--font-primary);
 }
 
 .title {
-  font-size: 1.5rem;
-  color: var(--secondary-color);
-  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
   margin-bottom: var(--space-lg);
+  font-family: var(--font-primary);
 }
 
 /* Links */
 a {
   color: var(--link-color);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   color: var(--link-hover);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 a:focus {
@@ -135,22 +151,20 @@ a:focus {
 }
 
 .main_link {
-  font-family: var(--font-secondary);
-  font-weight: 600;
   color: var(--primary-color);
-  font-size: 1.05em;
+  font-weight: 500;
 }
 
 .main_link:hover {
-  color: var(--link-hover);
-  text-decoration: none;
+  color: var(--secondary-color);
+  text-decoration: underline;
 }
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
-  padding: var(--space-xl) 0;
-  margin-bottom: var(--space-2xl);
+  background: var(--background);
+  padding: var(--space-2xl) 0 var(--space-xl) 0;
+  margin-bottom: var(--space-xl);
   border-bottom: 1px solid var(--border);
 }
 
@@ -193,16 +207,16 @@ a:focus {
 }
 
 .profile-photo {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px var(--shadow);
-  transition: transform 0.3s ease;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--background), 0 0 0 5px var(--border), 0 8px 28px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.35s ease;
 }
 
 .profile-photo:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 0 0 4px var(--background), 0 0 0 5px var(--accent-color), 0 12px 36px rgba(0, 0, 0, 0.18);
 }
 
 /* Contact Section */
@@ -211,10 +225,10 @@ a:focus {
 }
 
 .contact h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   margin-bottom: var(--space-md);
   border-bottom: 1px solid var(--border);
-  padding-bottom: var(--space-xs);
+  padding-bottom: var(--space-sm);
 }
 
 .contact-info {
@@ -231,6 +245,8 @@ a:focus {
 
 .address {
   line-height: 1.8;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
 .contact-links {
@@ -242,18 +258,22 @@ a:focus {
 .email-link, .scholar-link {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--surface);
-  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
   transition: all 0.2s ease;
   width: fit-content;
+  color: var(--link-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .email-link:hover, .scholar-link:hover {
-  background: var(--secondary-color);
-  color: white;
-  text-decoration: none;
-  transform: translateY(-1px);
+  color: var(--link-hover);
+  background: var(--surface);
+  border-color: var(--secondary-color);
+  box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 /* Main Content */
@@ -261,18 +281,23 @@ a:focus {
   margin-bottom: var(--space-2xl);
 }
 
-/* Sections */
+/* Sections - Clean and Minimal */
 .section {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
   padding: var(--space-lg);
-  background: var(--surface);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px var(--shadow);
-  transition: box-shadow 0.3s ease;
+  background: var(--background);
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--border);
+  transition: none;
 }
 
 .section:hover {
-  box-shadow: 0 10px 15px -3px var(--shadow);
+  box-shadow: none;
+}
+
+.section:first-of-type {
+  border-top: none;
 }
 
 /* Lists */
@@ -286,15 +311,17 @@ li {
   padding-left: var(--space-md);
   position: relative;
   line-height: 1.7;
+  color: var(--text-primary);
 }
 
 li::before {
-  content: "▶";
+  content: "–";
   color: var(--accent-color);
-  font-size: 0.8em;
+  font-weight: 400;
   position: absolute;
   left: 0;
-  top: 0.1em;
+  top: 0;
+  font-size: 0.95em;
 }
 
 li:last-child {
@@ -311,26 +338,32 @@ li:last-child {
 }
 
 .year-section h4 {
-  font-size: 1.75rem;
-  color: var(--primary-color);
-  text-align: center;
-  margin-bottom: var(--space-lg);
-  padding: var(--space-sm) 0;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--border) 100%);
-  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: left;
+  margin: var(--space-xl) 0 var(--space-lg) 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
   position: relative;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .year-section h4::after {
   content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--accent-color);
-  border-radius: 2px;
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.year-section:first-child h4 {
+  margin-top: 0;
 }
 
 .publication {
@@ -338,37 +371,43 @@ li:last-child {
   grid-template-columns: 1fr;
   gap: var(--space-md);
   padding: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  background: var(--surface);
-  border-radius: 12px;
-  border-left: 4px solid var(--accent-color);
-  transition: all 0.3s ease;
+  margin-bottom: var(--space-sm);
+  background: none;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-color);
+  border-bottom: none;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 @media (min-width: 768px) {
   .publication {
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 120px 1fr;
     gap: var(--space-lg);
   }
 }
 
 .publication:hover {
-  transform: translateX(4px);
-  box-shadow: 0 8px 25px var(--shadow);
+  background: var(--surface);
+  border-left-color: var(--primary-color);
+  box-shadow: 0 2px 12px var(--shadow-light);
+}
+
+.publication:last-child {
+  margin-bottom: 0;
 }
 
 .publication-image {
   display: flex;
-  justify-content: center;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .publication-image img {
   max-width: 100%;
-  width: 120px;
+  width: 100px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px var(--shadow);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px var(--shadow-light);
 }
 
 .publication-content {
@@ -391,13 +430,25 @@ li:last-child {
   text-align: center;
   padding: var(--space-lg);
   background: var(--surface);
-  border-radius: 8px;
+  border-radius: 0;
   margin-top: var(--space-lg);
-  border-left: 4px solid var(--secondary-color);
+  border: 1px solid var(--border);
+  box-shadow: none;
 }
 
 .more-publications em {
   color: var(--text-secondary);
+}
+
+.more-publications .scholar-link {
+  color: var(--link-color);
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.more-publications .scholar-link:hover {
+  color: var(--link-hover);
 }
 
 /* Footer */
@@ -406,6 +457,8 @@ li:last-child {
   color: white;
   padding: var(--space-lg) 0;
   text-align: center;
+  margin-top: var(--space-2xl);
+  border-top: 1px solid var(--border);
 }
 
 .footer-nav {
@@ -415,18 +468,42 @@ li:last-child {
 .footer-nav a {
   color: white;
   padding: var(--space-xs) var(--space-sm);
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
 }
 
 .footer-nav a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  text-decoration: none;
+  background: none;
+  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .last-updated {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
+}
+
+/* Early publications note */
+.early-publications-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-left: 2px solid var(--border);
+  border-radius: 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.early-publications-note .scholar-link {
+  color: var(--link-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.early-publications-note .scholar-link:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 
 /* Accessibility */
@@ -478,84 +555,54 @@ li:last-child {
   }
 }
 
-/* Dark mode support (optional) */
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: #3b82f6;
-    --secondary-color: #60a5fa;
-    --accent-color: #10b981;
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
-    --link-color: #60a5fa;
-    --link-hover: #f87171;
-    --background: #111827;
-    --surface: #1f2937;
-    --border: #374151;
-    --shadow: rgba(0, 0, 0, 0.3);
+    --primary-color: #9db8d4;
+    --secondary-color: #a8c5d9;
+    --accent-color: #7a9fa8;
+    --text-primary: #e8eef5;
+    --text-secondary: #b8c5d1;
+    --text-muted: #8b95a5;
+    --link-color: #7eb3d9;
+    --link-hover: #a8c5d9;
+    --background: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
   }
-}
-
-/* More publications notice */
-.more-publications {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-  border-radius: 8px;
-  text-align: center;
-  font-style: italic;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.more-publications .scholar-link {
-  color: white;
-  font-weight: 600;
-  text-decoration: underline;
-  transition: opacity 0.2s ease;
-}
-
-.more-publications .scholar-link:hover {
-  opacity: 0.8;
-}
-
-/* Early publications note */
-.early-publications-note {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background: var(--surface);
-  border-left: 4px solid var(--accent-color);
-  border-radius: 4px;
-  font-style: italic;
-  color: var(--text-secondary);
-}
-
-.early-publications-note .scholar-link {
-  color: var(--link-color);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.early-publications-note .scholar-link:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
 }
 
 /* Collapsible sections */
 .collapsible-header {
   cursor: pointer;
   user-select: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: var(--space-sm);
+  margin-right: calc(-1 * var(--space-sm));
+  border-bottom: 1.5px solid var(--border);
+  padding-bottom: 0.6rem;
 }
 
 .collapsible-header:hover {
-  color: #0066cc;
+  color: var(--secondary-color);
+  opacity: 0.85;
 }
 
 .toggle-icon {
-  font-size: 0.8em;
-  margin-left: 0.5em;
-  transition: transform 0.2s ease;
+  font-size: 0.75rem;
+  margin-left: 0.75em;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--accent-color);
+  opacity: 0.7;
 }
 
 .collapsible-content.collapsed {
@@ -564,4 +611,111 @@ li:last-child {
 
 .collapsible-header.expanded .toggle-icon {
   transform: rotate(180deg);
+}
+
+/* ===== BibTeX Modal ===== */
+.bibtex-btn {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-primary);
+  color: var(--link-color);
+  background: transparent;
+  border: 1px solid var(--link-color);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  vertical-align: middle;
+}
+
+.bibtex-btn:hover {
+  background: var(--link-color);
+  color: #fff;
+}
+
+.bibtex-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.bibtex-modal-content {
+  background: var(--background);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  max-width: 680px;
+  width: 100%;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.bibtex-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bibtex-modal-header h3 {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.bibtex-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0 0.25rem;
+  transition: color 0.15s;
+}
+
+.bibtex-close:hover {
+  color: var(--primary-color);
+}
+
+#bibtex-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+  max-height: calc(90vh - 10rem);
+}
+
+.bibtex-copy {
+  align-self: flex-end;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  font-family: var(--font-primary);
+  background: var(--link-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bibtex-copy:hover {
+  background: var(--link-hover);
 }
