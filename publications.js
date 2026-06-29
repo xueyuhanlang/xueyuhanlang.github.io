@@ -61,6 +61,7 @@ window.publicationsBibtex = String.raw`
   pages     = {94:1--94:17},
   year      = {2026},
   doi       = {10.1145/3811285}
+}
 
 @article{wang2025watertightness,
   author    = {Yuqing Wang and Xiaohong Jia and Jieyin Yang and Bolun Wang and Pengbo Bo and Yang Liu},
@@ -176,6 +177,7 @@ window.publicationsBibtex = String.raw`
   pages     = {276:1--276:15},
   year      = {2022},
   doi       = {10.1145/3550454.3555502}
+}
 
 @article{sun2022instanceseg,
   author    = {Chun-Yu Sun and Xin Tong and Yang Liu},
@@ -422,6 +424,7 @@ window.publicationsBibtex = String.raw`
   pages     = {217:1--217:11},
   year      = {2018},
   doi       = {10.1145/3272127.3275050}
+}
 
 @article{ma2017pneumatic,
   author    = {Li-Ke Ma and Yizhong Zhang and Yang Liu and Kun Zhou and Xin Tong},
