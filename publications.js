@@ -4,6 +4,14 @@ window.publicationsBibtex = String.raw`
 % BibTeX entries for Yang Liu's publications
 % Keys follow the pattern: firstauthorlastname+year+shorttitle
 
+
+@article{xu2026ncvt,
+  author    = {Jiacheng Xu and Bo Pang and Rui Xu and Xiaocheng Zhang and Yang Liu and Fei Zhu and Guoping Wang and Peng-Shuai Wang},
+  title     = {Neural Centroidal Voronoi Tessellations},
+  journal   = {ACM Transactions on Graphics (SIGGRAPH ASIA)},
+  year      = {2026},
+}
+
 @article{xing2026lattice,
   author    = {Yu Xing and Yang Liu and Lin Lu},
   title     = {Lattice Structure Optimization for Additive Manufacturing: Manufacturability-Driven Design and Pareto Front Construction},
