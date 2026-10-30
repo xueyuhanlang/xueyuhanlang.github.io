@@ -4,6 +4,22 @@ window.publicationsBibtex = String.raw`
 % BibTeX entries for Yang Liu's publications
 % Keys follow the pattern: firstauthorlastname+year+shorttitle
 
+@misc{huang2026roborender,
+  author    = {Huang Huang and Wensi Ai and Ziyu Chen and Youhui Wang and Zijian Du and Yang Liu and Jiaolong Yang and Li Fei-Fei and Jiajun Wu},
+  title     = {{RoboRender}: Robot-Oriented Video Generation for Visual Sim-to-Real Transfer},
+  howpublished = {arxiv:2610.09254},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2610.09254}
+}
+
+@article{yang2026intelligent,
+  author    = {Zhijie Yang and Jiajun Shen and Yang Liu and Ligang Liu and Qiang Zou},
+  title     = {Intelligent 3D CAD Technologies: Tasks, Capability Levels, and Evaluation Framework},
+  journal   = {Journal of Computer Aided Design and Computer Graphics},
+  year      = {2026},
+  note      = {to appear}
+}
+
 
 @article{xu2026ncvt,
   author    = {Jiacheng Xu and Bo Pang and Rui Xu and Xiaocheng Zhang and Yang Liu and Fei Zhu and Guoping Wang and Peng-Shuai Wang},

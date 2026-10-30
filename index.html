@@ -260,10 +260,10 @@
         <h3 id="supervised-students-toggle" class="collapsible-header">Supervised Intern Students <span
             class="toggle-icon">▼</span></h3>
         <ul id="supervised-students-content" class="collapsible-content collapsed">
-          <li><a href="https://dsubias.github.io/" rel="noopener">Jose Daniel Subias Sarrato</a> (PHD candidate from
-            Universidad de Zaragoza, Spain, 2026.6--2026.9)</li>
           <li><a href="https://youkang-kong.github.io/" rel="noopener">Youkang Kong</a> (PHD candidate from Tsinghua
             University, 2024.4--now)</li>
+          <li><a href="https://dsubias.github.io/" rel="noopener">Jose Daniel Subias Sarrato</a> (PHD candidate from
+            Universidad de Zaragoza, Spain, 2026.6--2026.9)</li>
           <li><a href="https://mingjiayang.github.io/" rel="noopener">Mingjia Yang</a> (PHD candidate
             from Beihang University, 2024.9--2025.6)</li>
           <li><a href="https://scholar.google.com/citations?hl=en&user=FS2cmyoAAAAJ" rel="noopener">Yingrui Wu</a> (PHD
@@ -329,6 +329,38 @@
           <div class="year-section">
             <h4>2026</h4>
 
+            <div class="publication">
+              <div class="publication-image">
+                <img src="https://robo-render.github.io/static/images/fig2_model.png"
+                  alt="RoboRender video generation model">
+              </div>
+              <div class="publication-content">
+                <a href="https://qingh097.github.io/" rel="noopener">Huang Huang</a>, <a
+                  href="https://wensi-ai.github.io/" rel="noopener">Wensi Ai</a>, <a href="https://ziyc.github.io/"
+                  rel="noopener">Ziyu Chen</a>, <a href="https://jeffreywang060303.github.io/" rel="noopener">Youhui
+                  Wang</a>,
+                <a href="https://scholar.google.com/citations?hl=en&user=kfW01ekAAAAJ" rel="noopener">Zijian Du</a>,
+                <strong>Yang Liu</strong>, <a href="https://jlyang.org/" rel="noopener">Jiaolong Yang</a>, <a
+                  href="https://profiles.stanford.edu/fei-fei-li" rel="noopener">Li Fei-Fei</a>, and <a
+                  href="https://jiajunwu.com/" rel="noopener">Jiajun Wu</a>:
+                <a class="main_link" href="https://arxiv.org/abs/2610.09254" rel="noopener">RoboRender:
+                  Robot-Oriented Video Generation for Visual Sim-to-Real Transfer</a>, <em>arXiv</em>, 2026.
+                <a href="https://robo-render.github.io/" rel="noopener">Project Page</a>.
+
+              </div>
+            </div>
+
+            <div class="publication">
+              <div class="publication-image">
+                <img src="images/icad.jpg" alt="Intelligent 3D CAD Technologies">
+              </div>
+              <div class="publication-content">Zhijie Yang, Jiajun Shen, <strong>Yang Liu</strong>, <a
+                  href="http://staff.ustc.edu.cn/~lgliu/" rel="noopener">Ligang Liu</a>, and <a
+                  href="https://qiang-zou.github.io/" rel="noopener">Qiang Zou</a>: <a class="main_link" href=""
+                  rel="noopener">Intelligent 3D CAD Technologies: Tasks, Capability Levels, and Evaluation
+                  Framework</a>, <em>Journal of Computer Aided Design and Computer Graphics</em>, in Chinese, to appear.
+              </div>
+            </div>
 
             <div class="publication">
               <div class="publication-image">
@@ -352,10 +384,12 @@
               <div class="publication-content">
                 <a href="https://xing-yuu.github.io/" rel="noopener">Yu Xing</a>,
                 <strong>Yang Liu</strong>, <a href="http://irc.cs.sdu.edu.cn/~lulin/index.html" rel="noopener">Lin
-                  Lu</a>: <a class="main_link" href="" rel="noopener">Lattice Structure
+                  Lu</a>: <a class="main_link" href="https://www.jcad.cn/article/doi/10.3724/SP.J.1089.2026-00157"
+                  rel="noopener">Lattice Structure
                   Optimization for Additive Manufacturing: Manufacturability-Driven Design and Pareto Front
-                  Construction</a>, <em>Journal of Computer Aided Design and Computer Graphics</em>. <a
-                  href="https://xing-yuu.github.io/project/MAPLE/MAPLE.html" rel="noopener">Project Page</a>
+                  Construction</a>, <em>Journal of Computer Aided Design and Computer Graphics</em>, in Chinese. <a
+                  href="https://xing-yuu.github.io/project/MAPLE/MAPLE.html" rel="noopener">Project Page</a>. <a
+                  href="https://arxiv.org/abs/2609.33598" rel="noopener">English version</a>
               </div>
             </div>
 
@@ -2107,6 +2141,7 @@
       // ── BibTeX feature ────────────────────────────────────────────────────
       // Maps a distinctive title substring to the BibTeX key in publications.bib
       const titleToBibKey = {
+        'Intelligent 3D CAD Technologies': 'yang2026intelligent',
         'Neural Centroidal Voronoi Tessellations': 'xu2026ncvt',
         'Lattice Structure Optimization for Additive Manufacturing': 'xing2026lattice',
         'RCEdit-500K': 'zhang2026rcedit',
@@ -2204,7 +2239,8 @@
         'Fitting Subdivision Surfaces to Unorganized Point Data': 'cheng2004subdiv',
         'Algebraic Conditions for Classifying the Positional Relationships between Two Conics': 'liu2004algcondition',
         'An Algebraic Condition for Classifying the Positional Relationship of Two Planar Ellipses': 'liu2003ellipse',
-        'An Algebraic Condition for the Positional Relationship of an Ellipse and a Parabola': 'shen2002parabola'
+        'An Algebraic Condition for the Positional Relationship of an Ellipse and a Parabola': 'shen2002parabola',
+        'RoboRender: Robot-Oriented Video Generation for Visual Sim-to-Real Transfer': 'huang2026roborender'
       };
 
       let bibCache = null;
